@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Sign Studio | Заказ вывесок</title>
+    <title>3D Sign | Заказ вывесок</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -17,62 +17,43 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: #ffffff;
             line-height: 1.5;
+            /* ТОЛЬКО ФОН ИЗ ФАЙЛА, БЕЗ ОВЕРЛЕЯ */
             background-image: url('./фон2.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            position: relative;
             min-height: 100vh;
-        }
-
-        /* Красно-алый оверлей вместо синего */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(160, 10, 20, 0.75); /* алый оттенок */
-            backdrop-filter: blur(3px);
-            z-index: -1;
+            color: #fff;
         }
 
         :root {
             --red-accent: #e31b23;
             --red-dark: #b01018;
-            --white: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #b71c1c;      /* красно-алый */
+            --card-hover: #8b0000;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
-            position: relative;
-            z-index: 2;
         }
 
-        /* Анимации появления */
+        /* Анимации */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header {
             padding: 24px 0 16px;
-            border-bottom: 3px solid var(--red-accent);
+            border-bottom: 4px solid var(--red-accent);
             margin-bottom: 32px;
-            backdrop-filter: blur(8px);
-            animation: fadeInUp 0.6s ease-out;
+            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 20px 20px;
+            animation: fadeInUp 0.6s;
         }
 
         .header-top {
@@ -91,24 +72,18 @@
 
         .logo-img {
             height: 70px;
-            width: auto;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 8px #000);
+            transition: transform 0.3s;
         }
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
+        .logo-img:hover { transform: scale(1.05); }
 
         .logo-text h1 {
             font-size: 2.4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #ffe0e0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: white;
+            text-shadow: 3px 3px 0 #a00, 6px 6px 0 rgba(0,0,0,0.3);
             text-transform: uppercase;
         }
-
         .logo-text .sub {
             color: #ffd966;
             font-weight: 600;
@@ -116,17 +91,12 @@
         }
 
         .header-contact {
-            background: rgba(180, 20, 30, 0.7);
-            backdrop-filter: blur(12px);
+            background: var(--red-accent);
             padding: 14px 28px;
             border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
             font-weight: 600;
             font-size: 1.2rem;
-            transition: box-shadow 0.3s;
-        }
-        .header-contact:hover {
-            box-shadow: 0 0 20px rgba(255, 80, 80, 0.6);
+            box-shadow: 0 0 20px rgba(227,27,35,0.5);
         }
 
         .section-title {
@@ -135,8 +105,8 @@
             margin: 40px 0 28px;
             display: flex;
             align-items: center;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            animation: fadeInUp 0.7s ease-out;
+            text-shadow: 0 4px 10px #000;
+            animation: fadeInUp 0.7s;
         }
         .section-title span {
             background: var(--red-accent);
@@ -155,44 +125,41 @@
         }
 
         .card {
-            background: var(--card-bg);
+            background: var(--card-bg);   /* АЛЫЙ ФОН */
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 30px -5px rgba(0,0,0,0.5);
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1);
-            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 20px 30px -5px #00000080;
+            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1);
+            border: 2px solid rgba(255,255,240,0.5);
             display: flex;
             flex-direction: column;
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0; /* начальное состояние */
+            animation: fadeInUp 0.6s forwards;
+            opacity: 0;
             transform: translateY(30px);
+            color: white;
         }
 
         .card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 32px 50px -8px rgba(227, 27, 35, 0.7);
-            border-color: var(--red-accent);
+            box-shadow: 0 32px 45px -8px #e31b23b3;
+            border-color: #ffcc00;
+            background: var(--card-hover);
         }
 
         .card-img {
             height: 190px;
-            background: linear-gradient(145deg, #2a1e1e 0%, #3d1e1e 100%);
+            background: #2a0a0a;  /* тёмная подложка для картинок */
             display: flex;
             align-items: center;
             justify-content: center;
             border-bottom: 5px solid var(--red-accent);
             padding: 12px;
-            transition: background 0.3s;
         }
-        .card:hover .card-img {
-            background: linear-gradient(145deg, #3d1e1e 0%, #5a2020 100%);
-        }
-
         .card-img img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 6px 8px #000);
             transition: transform 0.4s;
         }
         .card:hover .card-img img {
@@ -201,27 +168,27 @@
 
         .card-content {
             padding: 22px 20px 24px;
-            background: white;
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: #1a1a2e;
             margin-bottom: 6px;
+            color: white;
+            text-shadow: 2px 2px 0 #7a0000;
         }
 
         .card-sub {
-            color: var(--red-accent);
+            color: #ffd966;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-bottom: 10px;
         }
 
         .card-desc {
-            color: #2a2a3c;
+            color: #f0e6e6;
             font-size: 0.95rem;
             margin-bottom: 20px;
         }
@@ -230,12 +197,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px dashed #bbb;
+            border-top: 1px dashed #ffb3b3;
             padding-top: 16px;
         }
 
         .badge {
-            background: #1a1a2e;
+            background: #2d0000;
             color: white;
             padding: 5px 14px;
             border-radius: 30px;
@@ -245,8 +212,8 @@
 
         .btn {
             background: transparent;
-            border: 2px solid var(--red-accent);
-            color: var(--red-accent);
+            border: 2px solid white;
+            color: white;
             padding: 8px 20px;
             border-radius: 40px;
             font-weight: 700;
@@ -254,63 +221,57 @@
             cursor: pointer;
             transition: all 0.25s;
             text-decoration: none;
-            display: inline-block;
         }
-
         .btn:hover {
-            background: var(--red-accent);
-            color: white;
-            box-shadow: 0 4px 12px rgba(227,27,35,0.5);
+            background: white;
+            color: var(--red-accent);
+            box-shadow: 0 4px 12px #0000004d;
         }
 
         .btn-solid {
-            background: var(--red-accent);
-            color: white;
+            background: white;
+            color: var(--red-accent);
             border: none;
             padding: 16px 38px;
             font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(227,27,35,0.4);
+            box-shadow: 0 10px 20px #0000004d;
         }
         .btn-solid:hover {
-            background: #c4161e;
+            background: #ffe5e5;
             transform: scale(1.03);
         }
 
         .cta-section {
-            background: rgba(160, 20, 30, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(160, 20, 30, 0.8);
+            backdrop-filter: blur(8px);
             border-radius: 50px;
             padding: 48px 40px;
             margin: 40px 0 60px;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 2px solid white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            animation: fadeInUp 0.9s ease-out;
+            animation: fadeInUp 0.9s;
         }
 
         .footer {
             text-align: center;
             padding: 30px 0;
             color: #ffdab9;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid #ffffff33;
         }
 
-        /* Модальное окно оформления заказа */
+        /* Модалка */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: #000000b3;
             backdrop-filter: blur(6px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.3s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
         }
         .modal-card {
             background: white;
@@ -319,14 +280,12 @@
             border-radius: 36px;
             padding: 32px 28px;
             color: #1e1e2a;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
-            border: 2px solid var(--red-accent);
+            box-shadow: 0 30px 50px #000;
+            border: 3px solid var(--red-accent);
             transform: scale(0.9);
             animation: popIn 0.3s forwards;
         }
-        @keyframes popIn {
-            to { transform: scale(1); }
-        }
+        @keyframes popIn { to { transform: scale(1); } }
         .modal-card h3 {
             font-size: 2rem;
             color: var(--red-accent);
@@ -340,20 +299,9 @@
             border-radius: 40px;
             font-size: 1rem;
             outline: none;
-            transition: border 0.2s;
         }
-        .modal-card input:focus {
-            border-color: var(--red-accent);
-        }
-        .modal-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        .close-modal {
-            background: #ccc;
-            color: #222;
-        }
+        .modal-card input:focus { border-color: var(--red-accent); }
+        .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
 
         @media (max-width: 680px) {
             .logo-area { flex-direction: column; align-items: flex-start; }
@@ -368,14 +316,14 @@
                     <img src="./logo3D_new.png" alt="3D Sign Studio" class="logo-img" style="height: 65px;">
                     <div class="logo-text">
                         <div class="sub">изготовление с 2015</div>
-                        <h1>3D SIGN STUDIO</h1>
+                        <h1>3D SIGN</h1>
                     </div>
                 </div>
                 <div class="header-contact">
-                    <i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +7 (800) 555-34-45
+                    <i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +7 (913) 073-85-51
                 </div>
             </div>
-            <div class="tagline">
+            <div class="tagline" style="margin-top: 16px; font-size: 1.2rem;">
                 <strong>Объёмные вывески и реклама</strong> · дизайн, производство, монтаж
             </div>
         </header>
@@ -397,34 +345,34 @@
         </div>
 
         <footer class="footer">
-            © 2026 3D Sign Studio. Красный · Белый · Синий (но фон алый)
+            © 2026 3D Sign. Все права защищены.
         </footer>
     </div>
 
-    <!-- Модальное окно оформления -->
+    <!-- Модальное окно -->
     <div class="modal" id="orderModal">
         <div class="modal-card">
             <h3><i class="fas fa-shopping-cart" style="margin-right: 12px;"></i>Быстрый заказ</h3>
-            <p style="margin-bottom: 16px; color: #444;">Оставьте контакты — мы перезвоним через 15 минут</p>
+            <p style="margin-bottom: 16px; color: #444;">Оставьте контакты — мы перезвоним вам в течении дня</p>
             <input type="text" placeholder="Ваше имя" id="orderName">
             <input type="tel" placeholder="Телефон" id="orderPhone">
-            <input type="text" placeholder="Тип вывески (необязательно)" id="orderType">
+            <input type="text" placeholder="Тип вывески" id="orderType">
             <div class="modal-actions">
-                <button class="btn btn-solid" style="flex:2;" id="submitOrder">Отправить</button>
-                <button class="btn close-modal" style="flex:1;" id="closeModal">Закрыть</button>
+                <button class="btn btn-solid" style="flex:2; background:var(--red-accent); color:white;" id="submitOrder">Отправить</button>
+                <button class="btn" style="flex:1; background:#aaa; border-color:#aaa;" id="closeModal">Закрыть</button>
             </div>
         </div>
     </div>
 
     <script>
         (function() {
-            // Расширенный список услуг, включая интерьерную навигацию
+            // ВАЖНО: имя файла интерьерной навигации с пробелом после подчёркивания
             const services = [
                 { file: "advertising designs.png", title: "Рекламные конструкции", desc: "Стелы, пилоны, щиты.", category: "Наружная реклама", icon: "fa-bullhorn" },
                 { file: "banners.png", title: "Баннеры", desc: "Широкоформатная печать.", category: "Печать", icon: "fa-flag" },
                 { file: "car branding.png", title: "Брендирование авто", desc: "Оклейка, логотипы.", category: "Транспорт", icon: "fa-truck" },
                 { file: "console signboard.png", title: "Консольные вывески", desc: "Перпендикулярно фасаду.", category: "Вывески", icon: "fa-square" },
-                { file: "interior design_navigation.png", title: "Интерьерная навигация", desc: "Таблички, указатели, стойки.", category: "Интерьер", icon: "fa-signs-post" },
+                { file: "interior design_ navigation.png", title: "Интерьерная навигация", desc: "Таблички, указатели, стойки.", category: "Интерьер", icon: "fa-signs-post" },
                 { file: "neon signs.png", title: "Неоновые вывески", desc: "Гибкий неон, классика.", category: "Неон", icon: "fa-lightbulb" },
                 { file: "pseudo volumetric letters.png", title: "Псевдообъёмные буквы", desc: "Бюджетный вариант.", category: "Объём", icon: "fa-font" },
                 { file: "roof installations.png", title: "Крышные установки", desc: "Конструкции на кровле.", category: "Крыша", icon: "fa-building" },
@@ -435,12 +383,10 @@
             ];
 
             const grid = document.getElementById('catalogGrid');
-            
             services.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.style.animationDelay = `${index * 0.05}s`;
-                
+                card.style.animationDelay = `${index * 0.04}s`;
                 card.innerHTML = `
                     <div class="card-img">
                         <img src="./${item.file}" alt="${item.title}" loading="lazy" 
@@ -459,58 +405,39 @@
                 grid.appendChild(card);
             });
 
-            // Обработчики кнопок "Заказать" в карточках
+            // Кнопки заказа в карточках
             document.querySelectorAll('.order-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const service = btn.dataset.service || 'вывеску';
-                    document.getElementById('orderType').value = service;
+                    document.getElementById('orderType').value = btn.dataset.service;
                     document.getElementById('orderModal').style.display = 'flex';
                 });
             });
 
-            // Модальное окно
             const modal = document.getElementById('orderModal');
-            const openBtn = document.getElementById('openOrderModal');
-            const closeBtn = document.getElementById('closeModal');
-            const submitBtn = document.getElementById('submitOrder');
-
-            openBtn.addEventListener('click', (e) => {
+            document.getElementById('openOrderModal').addEventListener('click', (e) => {
                 e.preventDefault();
                 document.getElementById('orderType').value = '';
                 modal.style.display = 'flex';
             });
+            document.getElementById('closeModal').addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
-
-            submitBtn.addEventListener('click', () => {
+            document.getElementById('submitOrder').addEventListener('click', () => {
                 const name = document.getElementById('orderName').value.trim();
                 const phone = document.getElementById('orderPhone').value.trim();
-                if (!name || !phone) {
-                    alert('Пожалуйста, введите имя и телефон');
-                    return;
-                }
-                alert(`Спасибо, ${name}! Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+                if (!name || !phone) { alert('Введите имя и телефон'); return; }
+                alert(`Спасибо, ${name}! Мы свяжемся с вами по номеру ${phone}.`);
                 modal.style.display = 'none';
-                document.getElementById('orderName').value = '';
-                document.getElementById('orderPhone').value = '';
             });
 
-            // Плавное появление карточек при загрузке
             window.addEventListener('load', () => {
-                document.querySelectorAll('.card').forEach(card => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
+                document.querySelectorAll('.card').forEach(c => {
+                    c.style.opacity = '1';
+                    c.style.transform = 'translateY(0)';
                 });
             });
         })();
     </script>
-    <!-- fallback для иконок, если картинка не загрузится -->
 </body>
 </html>
