@@ -3,331 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Sign Studio | Заказ вывесок</title>
+    <title>3D Sign Studio | Изготовление вывесок</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0e0e0e;
+            color: #ffffff;
             line-height: 1.5;
-            background-image: url('./фон2.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            color: #fff;
         }
-        :root {
-            --red-accent: #e31b23;
-            --card-bg: #b71c1c;
-            --card-hover: #8b0000;
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+
+        /* Шапка */
         .header {
-            padding: 24px 0 16px;
-            border-bottom: 4px solid var(--red-accent);
-            margin-bottom: 32px;
-            backdrop-filter: blur(6px);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 0 0 20px 20px;
-            animation: fadeInUp 0.6s;
+            padding: 24px 0;
+            border-bottom: 1px solid #2a2a2a;
         }
-        .header-top {
+
+        .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 20px;
         }
-        .logo-area { display: flex; align-items: center; gap: 20px; }
-        .logo-img { height: 70px; filter: drop-shadow(0 4px 8px #000); transition: transform 0.3s; }
-        .logo-img:hover { transform: scale(1.05); }
-        .logo-text h1 {
-            font-size: 2.4rem; font-weight: 800; color: white;
-            text-shadow: 3px 3px 0 #a00, 6px 6px 0 rgba(0,0,0,0.3);
-            text-transform: uppercase;
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
         }
-        .logo-text .sub { color: #ffd966; font-weight: 600; letter-spacing: 3px; }
-        .header-contact {
-            background: var(--red-accent); padding: 14px 28px; border-radius: 60px;
-            font-weight: 600; font-size: 1.2rem; box-shadow: 0 0 20px rgba(227,27,35,0.5);
-        }
-        .section-title {
-            font-size: 2.2rem; font-weight: 700; margin: 40px 0 28px;
-            display: flex; align-items: center; text-shadow: 0 4px 10px #000;
-            animation: fadeInUp 0.7s;
-        }
-        .section-title span {
-            background: var(--red-accent); padding: 6px 20px; border-radius: 40px;
-            font-size: 1rem; margin-left: 18px;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+        .header-contacts {
+            display: flex;
+            align-items: center;
             gap: 30px;
-            margin-bottom: 60px;
         }
-        .card {
-            background: var(--card-bg); border-radius: 28px; overflow: hidden;
-            box-shadow: 0 20px 30px -5px #00000080;
-            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1);
-            border: 2px solid rgba(255,255,240,0.5);
-            display: flex; flex-direction: column;
-            animation: fadeInUp 0.6s forwards;
-            opacity: 0; transform: translateY(30px);
-            color: white;
-        }
-        .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 32px 45px -8px #e31b23b3;
-            border-color: #ffcc00;
-            background: var(--card-hover);
-        }
-        .card-img {
-            height: 190px; background: #2a0a0a;
-            display: flex; align-items: center; justify-content: center;
-            border-bottom: 5px solid var(--red-accent); padding: 12px;
-        }
-        .card-img img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
-            filter: drop-shadow(0 6px 8px #000); transition: transform 0.4s;
-        }
-        .card:hover .card-img img { transform: scale(1.05); }
-        .card-content { padding: 22px 20px 24px; }
-        .card-title {
-            font-size: 1.6rem; font-weight: 700; margin-bottom: 6px;
-            color: white; text-shadow: 2px 2px 0 #7a0000;
-        }
-        .card-sub {
-            color: #ffd966; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 10px;
-        }
-        .card-desc { color: #f0e6e6; font-size: 0.95rem; margin-bottom: 20px; }
-        .card-footer {
-            display: flex; align-items: center; justify-content: space-between;
-            border-top: 1px dashed #ffb3b3; padding-top: 16px;
-        }
-        .badge {
-            background: #2d0000; color: white; padding: 5px 14px;
-            border-radius: 30px; font-size: 0.8rem; font-weight: 600;
-        }
-        .btn {
-            background: transparent; border: 2px solid white; color: white;
-            padding: 8px 20px; border-radius: 40px; font-weight: 700;
-            font-size: 0.9rem; cursor: pointer; transition: all 0.25s;
+
+        .header-phone {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #fff;
             text-decoration: none;
         }
-        .btn:hover {
-            background: white; color: var(--red-accent);
-            box-shadow: 0 4px 12px #0000004d;
+
+        .header-phone i {
+            color: #e31b23;
+            margin-right: 8px;
         }
-        .btn-solid {
-            background: white; color: var(--red-accent); border: none;
-            padding: 16px 38px; font-size: 1.2rem; box-shadow: 0 10px 20px #0000004d;
+
+        .header-btn {
+            background: transparent;
+            border: 1px solid #e31b23;
+            color: #e31b23;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
         }
-        .btn-solid:hover { background: #ffe5e5; transform: scale(1.03); }
-        .cta-section {
-            background: rgba(160, 20, 30, 0.8); backdrop-filter: blur(8px);
-            border-radius: 50px; padding: 48px 40px; margin: 40px 0 60px;
-            border: 2px solid white; display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap;
-            animation: fadeInUp 0.9s;
+
+        .header-btn:hover {
+            background: #e31b23;
+            color: #fff;
         }
-        .footer {
-            text-align: center; padding: 30px 0; color: #ffdab9;
-            border-top: 1px solid #ffffff33;
+
+        /* Hero секция */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
         }
-        /* Модалка */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000000b3; backdrop-filter: blur(6px); z-index: 1000;
-            align-items: center; justify-content: center;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
         }
-        .modal-card {
-            background: white; max-width: 420px; width: 90%; border-radius: 36px;
-            padding: 32px 28px; color: #1e1e2a; box-shadow: 0 30px 50px #000;
-            border: 3px solid var(--red-accent); transform: scale(0.9);
-            animation: popIn 0.3s forwards;
+
+        .hero h1 .red {
+            color: #e31b23;
         }
-        @keyframes popIn { to { transform: scale(1); } }
-        .modal-card h3 { font-size: 2rem; color: var(--red-accent); margin-bottom: 20px; }
-        .modal-card input {
-            width: 100%; padding: 14px 18px; margin: 10px 0;
-            border: 2px solid #ddd; border-radius: 40px; font-size: 1rem;
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btn {
+            background: #e31b23;
+            color: #fff;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .hero-btn:hover {
+            background: #b01018;
+            transform: scale(1.02);
+        }
+
+        /* Секция услуг */
+        .services {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section-title .red {
+            color: #e31b23;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 40px 20px;
+        }
+
+        .service-card {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e31b23;
+            transition: 0.2s;
+            padding: 20px;
+        }
+
+        .service-card:hover .service-icon {
+            background: #e31b23;
+        }
+
+        .service-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .service-card:hover .service-icon img {
+            filter: brightness(0) invert(1);
+        }
+
+        .service-icon i {
+            font-size: 48px;
+            color: #e31b23;
+        }
+
+        .service-card:hover .service-icon i {
+            color: #fff;
+        }
+
+        .service-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* О компании */
+        .about {
+            padding: 60px 0;
+            background: #141414;
+            border-radius: 40px;
+            margin: 40px 0;
+        }
+
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .about p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #e31b23;
+        }
+
+        .stat-item p {
+            color: #888;
+            margin: 0;
+        }
+
+        .about-image {
+            background: #1a1a1a;
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+        }
+
+        .about-image i {
+            font-size: 80px;
+            color: #e31b23;
+        }
+
+        /* Форма заявки */
+        .contact {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+            background: #141414;
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .contact-form input {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            background: #0e0e0e;
+            border: 1px solid #333;
+            border-radius: 40px;
+            color: #fff;
+            font-size: 1rem;
             outline: none;
         }
-        .modal-card input:focus { border-color: var(--red-accent); }
-        .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
-        @media (max-width: 680px) {
-            .logo-area { flex-direction: column; align-items: flex-start; }
+
+        .contact-form input:focus {
+            border-color: #e31b23;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: #e31b23;
+            border: none;
+            border-radius: 40px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .contact-form button:hover {
+            background: #b01018;
+        }
+
+        .footer {
+            padding: 30px 0;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Модалка */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: #141414;
+            max-width: 420px;
+            width: 90%;
+            border-radius: 30px;
+            padding: 32px;
+            border: 1px solid #e31b23;
+        }
+
+        .modal-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-card input {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: #0e0e0e;
+            border: 1px solid #333;
+            border-radius: 40px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .modal-card input:focus {
+            border-color: #e31b23;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #e31b23;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .about-inner {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Шапка -->
         <header class="header">
-            <div class="header-top">
-                <div class="logo-area">
-                    <img src="./logo3D_new.png" alt="3D Sign Studio" class="logo-img" style="height: 65px;">
-                    <div class="logo-text">
-                        <div class="sub">изготовление с 2015</div>
-                        <h1>3D SIGN STUDIO</h1>
-                    </div>
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="./logo3D_new.png" alt="3D Sign Studio">
                 </div>
-                <div class="header-contact">
-                    <i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +7 (800) 555-34-45
+                <div class="header-contacts">
+                    <a href="tel:+78005553445" class="header-phone">
+                        <i class="fas fa-phone-alt"></i> +7 (800) 555-34-45
+                    </a>
+                    <a href="#" class="header-btn" id="headerOrderBtn">Заказать</a>
                 </div>
-            </div>
-            <div class="tagline" style="margin-top: 16px; font-size: 1.2rem;">
-                <strong>Объёмные вывески и реклама</strong> · дизайн, производство, монтаж
             </div>
         </header>
 
-        <div class="section-title">
-            <i class="fas fa-images" style="margin-right: 15px;"></i> 
-            Наши решения 
-            <span>13 направлений</span>
-        </div>
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Изготовление <span class="red">3D вывесок</span><br>под ключ в Новокузнецке</h1>
+            <p>Проектирование, производство и монтаж наружной рекламы с гарантией в 1 год</p>
+            <a href="#" class="hero-btn" id="heroOrderBtn">Рассчитать стоимость</a>
+        </section>
 
-        <div class="card-grid" id="catalogGrid"></div>
+        <!-- Услуги -->
+        <section class="services">
+            <h2 class="section-title">Наши <span class="red">услуги</span></h2>
+            <div class="services-grid" id="servicesGrid"></div>
+        </section>
 
-        <div class="cta-section">
-            <div class="cta-text">
-                <h3>Нужна вывеска под ключ?</h3>
-                <p>Рассчитаем стоимость за 1 час, подготовим макет</p>
+        <!-- О компании -->
+        <section class="about">
+            <div class="about-inner">
+                <div>
+                    <h2>3D Sign Studio — <span class="red">эксперты</span> в наружной рекламе</h2>
+                    <p>С 2006 года создаём вывески, которые работают на ваш бизнес. Собственное производство, современное оборудование и команда профессионалов.</p>
+                    <p>Мы не просто делаем вывески — мы разрабатываем комплексные решения, учитывая архитектуру здания, фирменный стиль и бюджет.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>500+</h3>
+                            <p>выполненных проектов</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>1 год</h3>
+                            <p>гарантии на все работы</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-industry"></i>
+                </div>
             </div>
-            <a href="#" class="btn btn-solid" id="openOrderModal"><i class="fas fa-pen-ruler" style="margin-right: 12px;"></i>Оформить заказ</a>
-        </div>
+        </section>
+
+        <!-- Форма -->
+        <section class="contact">
+            <h2 class="section-title">Оставьте <span class="red">заявку</span></h2>
+            <p style="color: #aaa; margin-bottom: 20px;">Рассчитаем стоимость и подготовим макет в течении суток</p>
+            <div class="contact-form">
+                <form id="mainForm" action="https://formspree.io/f/mkokbkjb" method="POST">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Телефон" required>
+                    <input type="text" name="service" placeholder="Тип вывески">
+                    <input type="hidden" name="_subject" value="Новый заказ с сайта 3D Sign Studio">
+                    <input type="hidden" name="_next" value="?success">
+                    <button type="submit">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
 
         <footer class="footer">
-            © 2026 3D Sign Studio. Красный · Белый · Синий
+            © 2026 3D Sign Studio. Новокузнецк. Все права защищены.
         </footer>
     </div>
 
-    <!-- Модальное окно с формой отправки на почту -->
+    <!-- Модалка -->
     <div class="modal" id="orderModal">
         <div class="modal-card">
-            <h3><i class="fas fa-envelope" style="margin-right: 12px;"></i>Заказ на почту</h3>
-            <p style="margin-bottom: 16px; color: #444;">Заполните — ответ придёт вам и нам</p>
-            
-            <!-- ФОРМА С ПРАВИЛЬНЫМ ENDPOINT -->
-            <form id="orderForm" action="https://formspree.io/f/mkokbkjb" method="POST">
+            <h3>Быстрый заказ</h3>
+            <form id="modalForm" action="https://formspree.io/f/mkokbkjb" method="POST">
                 <input type="text" name="name" placeholder="Ваше имя" required>
                 <input type="tel" name="phone" placeholder="Телефон" required>
-                <input type="text" name="service" placeholder="Тип вывески" id="orderTypeInput">
+                <input type="text" name="service" placeholder="Тип вывески" id="modalServiceInput">
                 <input type="hidden" name="_subject" value="Новый заказ с сайта 3D Sign Studio">
-                <!-- После отправки остаёмся на той же странице -->
-                <input type="hidden" name="_next" value="#success">
-                
+                <input type="hidden" name="_next" value="?success">
                 <div class="modal-actions">
-                    <button type="submit" class="btn btn-solid" style="flex:2; background:var(--red-accent); color:white;">
-                        <i class="fas fa-paper-plane"></i> Отправить
-                    </button>
-                    <button type="button" class="btn" style="flex:1; background:#aaa; border-color:#aaa;" id="closeModalBtn">Закрыть</button>
+                    <button type="submit" class="btn-primary">Отправить</button>
+                    <button type="button" class="btn-secondary" id="closeModalBtn">Закрыть</button>
                 </div>
             </form>
-            <p style="font-size:0.8rem; margin-top: 12px; color:#666;">
-                Нажимая «Отправить», вы соглашаетесь на обработку данных.
-            </p>
         </div>
     </div>
 
     <script>
         (function() {
-            // Данные карточек (имя файла интерьерной навигации с пробелом)
             const services = [
-                { file: "advertising designs.png", title: "Рекламные конструкции", desc: "Стелы, пилоны, щиты.", category: "Наружная реклама", icon: "fa-bullhorn" },
-                { file: "banners.png", title: "Баннеры", desc: "Широкоформатная печать.", category: "Печать", icon: "fa-flag" },
-                { file: "car branding.png", title: "Брендирование авто", desc: "Оклейка, логотипы.", category: "Транспорт", icon: "fa-truck" },
-                { file: "console signboard.png", title: "Консольные вывески", desc: "Перпендикулярно фасаду.", category: "Вывески", icon: "fa-square" },
-                { file: "interior design_ navigation.png", title: "Интерьерная навигация", desc: "Таблички, указатели, стойки.", category: "Интерьер", icon: "fa-signs-post" },
-                { file: "neon signs.png", title: "Неоновые вывески", desc: "Гибкий неон, классика.", category: "Неон", icon: "fa-lightbulb" },
-                { file: "pseudo volumetric letters.png", title: "Псевдообъёмные буквы", desc: "Бюджетный вариант.", category: "Объём", icon: "fa-font" },
-                { file: "roof installations.png", title: "Крышные установки", desc: "Конструкции на кровле.", category: "Крыша", icon: "fa-building" },
-                { file: "shop window design.png", title: "Оформление витрин", desc: "Плёнка, аппликации.", category: "Витрины", icon: "fa-store" },
-                { file: "three-dimensional letters.png", title: "Объёмные буквы", desc: "Акрил, металл, ПВХ.", category: "3D буквы", icon: "fa-cube" },
-                { file: "volumetric letters with pixel backlighting.png", title: "Пиксельная подсветка", desc: "RGB буквы с эффектами.", category: "LED", icon: "fa-gripfire" },
-                { file: "volumetric light boxes.png", title: "Объёмные лайтбоксы", desc: "Световые короба.", category: "Лайтбокс", icon: "fa-braille" }
+                { file: "advertising designs.png", title: "Рекламные конструкции", desc: "Стелы, пилоны, щиты", icon: "fa-bullhorn" },
+                { file: "banners.png", title: "Баннеры", desc: "Широкоформатная печать", icon: "fa-flag" },
+                { file: "car branding.png", title: "Брендирование авто", desc: "Оклейка, логотипы", icon: "fa-truck" },
+                { file: "console signboard.png", title: "Консольные вывески", desc: "Перпендикулярно фасаду", icon: "fa-square" },
+                { file: "interior design_ navigation.png", title: "Интерьерная навигация", desc: "Таблички, указатели", icon: "fa-signs-post" },
+                { file: "neon signs.png", title: "Неоновые вывески", desc: "Гибкий неон, классика", icon: "fa-lightbulb" },
+                { file: "pseudo volumetric letters.png", title: "Псевдообъёмные буквы", desc: "Бюджетный вариант", icon: "fa-font" },
+                { file: "roof installations.png", title: "Крышные установки", desc: "Конструкции на кровле", icon: "fa-building" },
+                { file: "shop window design.png", title: "Оформление витрин", desc: "Плёнка, аппликации", icon: "fa-store" },
+                { file: "three-dimensional letters.png", title: "Объёмные буквы", desc: "Акрил, металл, ПВХ", icon: "fa-cube" },
+                { file: "volumetric letters with pixel backlighting.png", title: "Пиксельная подсветка", desc: "RGB буквы с эффектами", icon: "fa-gripfire" },
+                { file: "volumetric light boxes.png", title: "Объёмные лайтбоксы", desc: "Световые короба", icon: "fa-braille" }
             ];
 
-            const grid = document.getElementById('catalogGrid');
-            services.forEach((item, index) => {
+            const grid = document.getElementById('servicesGrid');
+            services.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'card';
-                card.style.animationDelay = `${index * 0.04}s`;
+                card.className = 'service-card';
                 card.innerHTML = `
-                    <div class="card-img">
-                        <img src="./${item.file}" alt="${item.title}" loading="lazy" 
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas ${item.icon}\' style=\'font-size: 52px; color: white;\'></i>'">
+                    <div class="service-icon">
+                        <img src="./${item.file}" alt="${item.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas ${item.icon}\'></i>'">
                     </div>
-                    <div class="card-content">
-                        <div class="card-title">${item.title}</div>
-                        <div class="card-sub"><i class="fas fa-tag"></i> ${item.category}</div>
-                        <div class="card-desc">${item.desc}</div>
-                        <div class="card-footer">
-                            <span class="badge">от 3 дней</span>
-                            <a href="#" class="btn order-btn" data-service="${item.title}">Заказать</a>
-                        </div>
-                    </div>
+                    <div class="service-title">${item.title}</div>
+                    <div class="service-desc">${item.desc}</div>
                 `;
+                card.addEventListener('click', () => {
+                    document.getElementById('modalServiceInput').value = item.title;
+                    document.getElementById('orderModal').style.display = 'flex';
+                });
                 grid.appendChild(card);
             });
 
-            // Модальное окно и подстановка услуги
+            // Модалка
             const modal = document.getElementById('orderModal');
-            const typeInput = document.getElementById('orderTypeInput');
-            
-            document.querySelectorAll('.order-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    typeInput.value = btn.dataset.service;
-                    modal.style.display = 'flex';
-                });
-            });
-
-            document.getElementById('openOrderModal').addEventListener('click', (e) => {
+            document.getElementById('headerOrderBtn').addEventListener('click', (e) => {
                 e.preventDefault();
-                typeInput.value = '';
+                document.getElementById('modalServiceInput').value = '';
                 modal.style.display = 'flex';
             });
-
-            // Закрытие модалки
-            const closeModal = () => modal.style.display = 'none';
-            document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-            window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-            // Уведомление об отправке (опционально)
-            const form = document.getElementById('orderForm');
-            form.addEventListener('submit', () => {
-                // Даём форме отправиться, но через мгновение закроем модалку
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    // Можно показать alert или сообщение, но Formspree сам перенаправит на #success
-                    alert('✅ Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-                    form.reset();
-                }, 200);
+            document.getElementById('heroOrderBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('modalServiceInput').value = '';
+                modal.style.display = 'flex';
             });
+            document.getElementById('closeModalBtn').addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-            // Анимация карточек
-            window.addEventListener('load', () => {
-                document.querySelectorAll('.card').forEach(c => {
-                    c.style.opacity = '1';
-                    c.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Если URL содержит #success, показываем сообщение (после редиректа от Formspree)
-            if (window.location.hash === '#success') {
-                alert('✅ Ваша заявка успешно отправлена!');
-                // Убираем хеш, чтобы сообщение не показывалось повторно
-                history.replaceState(null, null, ' ');
+            // Успех
+            if (window.location.search.includes('success')) {
+                alert('✅ Спасибо! Ваша заявка отправлена.');
+                window.history.replaceState(null, '', window.location.pathname);
             }
         })();
     </script>
