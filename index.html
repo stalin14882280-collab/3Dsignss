@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Sign Studio | Каталог вывесок</title>
+    <title>3D Sign Studio | Вывески и реклама</title>
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome для иконок -->
+    <!-- Font Awesome (для иконок, но не критично) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -19,12 +19,30 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a192f; /* глубокий синий */
+            background-color: #0a1a2f; /* глубокий синий, запасной */
             color: #ffffff;
             line-height: 1.5;
+            /* Фоновое изображение из репозитория */
+            background-image: url('./фон2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
 
-        /* Красно-бело-синяя цветовая схема */
+        /* затемнение для читаемости текста поверх фона */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.75); /* синий оттенок */
+            z-index: -1;
+        }
+
+        /* Красно-бело-синие акценты */
         :root {
             --blue-dark: #0a192f;
             --blue-medium: #173a6d;
@@ -32,20 +50,22 @@
             --red-accent: #e31b23;
             --red-dark: #b01018;
             --white: #ffffff;
-            --off-white: #f4f6f9;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Шапка */
+        /* Шапка с логотипами */
         .header {
-            padding: 32px 0 20px;
+            padding: 24px 0 16px;
             border-bottom: 3px solid var(--red-accent);
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(4px);
         }
 
         .header-top {
@@ -56,60 +76,61 @@
             gap: 20px;
         }
 
-        .logo-area h1 {
-            font-size: 2.8rem;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .logo-text h1 {
+            font-size: 2.4rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff 0%, #aaccff 100%);
+            background: linear-gradient(135deg, #fff 0%, #cce0ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-transform: uppercase;
-            line-height: 1.2;
+            letter-spacing: 1px;
         }
 
-        .logo-area .sub {
-            font-size: 1rem;
-            font-weight: 500;
+        .logo-text .sub {
             color: var(--red-accent);
-            letter-spacing: 4px;
-            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 3px;
         }
 
         .header-contact {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(4px);
+            background: rgba(10, 25, 47, 0.7);
+            backdrop-filter: blur(8px);
             padding: 14px 28px;
             border-radius: 60px;
-            border: 1px solid rgba(227, 27, 35, 0.5);
+            border: 1px solid rgba(227, 27, 35, 0.7);
             font-weight: 600;
             font-size: 1.2rem;
-        }
-
-        .header-contact i {
-            color: var(--red-accent);
-            margin-right: 10px;
+            color: white;
         }
 
         .tagline {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-top: 16px;
-            color: #ccddf8;
-            font-weight: 400;
+            color: #e0ecff;
         }
 
-        .tagline strong {
-            color: var(--white);
-            font-weight: 700;
-        }
-
-        /* Секция с карточками */
+        /* Сетка карточек с изображениями */
         .section-title {
             font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 32px;
+            margin: 40px 0 28px;
             display: flex;
             align-items: center;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
         .section-title span {
             background: var(--red-accent);
@@ -117,12 +138,6 @@
             border-radius: 40px;
             font-size: 1rem;
             margin-left: 18px;
-            color: white;
-            font-weight: 600;
-        }
-        .section-title i {
-            color: var(--red-accent);
-            margin-right: 14px;
         }
 
         .card-grid {
@@ -133,78 +148,79 @@
         }
 
         .card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 30px -8px rgba(0,0,0,0.4);
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 30px -5px rgba(0,0,0,0.4);
+            transition: transform 0.2s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.5);
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 25px 40px -8px rgba(227, 27, 35, 0.3);
+            box-shadow: 0 28px 40px -8px rgba(227, 27, 35, 0.5);
             border-color: var(--red-accent);
         }
 
         .card-img {
-            height: 170px;
-            background: linear-gradient(145deg, var(--blue-medium) 0%, #102a44 100%);
+            height: 180px;
+            background-color: #102a44;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 3.5rem;
             border-bottom: 4px solid var(--red-accent);
+            padding: 10px;
+        }
+
+        .card-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
         .card-content {
             padding: 22px 20px 24px;
-            background: var(--white);
+            background: white;
         }
 
         .card-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--blue-dark);
-            margin-bottom: 8px;
-            line-height: 1.3;
+            margin-bottom: 6px;
         }
 
         .card-sub {
-            font-size: 0.9rem;
             color: var(--red-accent);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
         }
 
         .card-desc {
-            color: #334e68;
+            color: #2a405c;
             font-size: 0.95rem;
             margin-bottom: 18px;
-            line-height: 1.5;
         }
 
         .card-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px dashed #cbd5e1;
+            border-top: 1px dashed #a0b8cc;
             padding-top: 16px;
-            margin-top: auto;
         }
 
         .badge {
             background: var(--blue-dark);
             color: white;
-            padding: 5px 12px;
+            padding: 5px 14px;
             border-radius: 30px;
             font-size: 0.8rem;
             font-weight: 600;
@@ -221,7 +237,6 @@
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
-            display: inline-block;
         }
 
         .btn:hover {
@@ -233,214 +248,194 @@
             background: var(--red-accent);
             color: white;
             border: none;
-            padding: 14px 34px;
+            padding: 16px 38px;
             font-size: 1.2rem;
-            box-shadow: 0 8px 18px rgba(227,27,35,0.3);
+            box-shadow: 0 8px 18px rgba(227,27,35,0.4);
         }
 
-        .btn-solid:hover {
-            background: var(--red-dark);
-            transform: scale(1.02);
-        }
-
-        /* CTA секция */
         .cta-section {
-            background: linear-gradient(135deg, var(--blue-medium) 0%, #0a1e33 100%);
+            background: rgba(23, 58, 109, 0.8);
+            backdrop-filter: blur(8px);
             border-radius: 40px;
             padding: 48px 40px;
-            margin: 50px 0 70px;
-            border: 1px solid rgba(227,27,35,0.4);
+            margin: 40px 0 60px;
+            border: 1px solid rgba(227,27,35,0.5);
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 30px;
         }
 
         .cta-text h3 {
             font-size: 2rem;
             font-weight: 700;
-            color: white;
-        }
-        .cta-text p {
-            font-size: 1.1rem;
-            color: #bdd3f0;
-            margin-top: 8px;
         }
 
         .footer {
             text-align: center;
             padding: 30px 0;
-            color: #8899bb;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b0c7e0;
+            border-top: 1px solid rgba(255,255,255,0.15);
         }
 
-        /* адаптив */
         @media (max-width: 680px) {
-            .header-top {
+            .logo-area {
                 flex-direction: column;
-                align-items: start;
-            }
-            .logo-area h1 {
-                font-size: 2.2rem;
+                align-items: flex-start;
             }
             .cta-section {
                 padding: 30px 24px;
-            }
-            .section-title {
-                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Шапка -->
+        <!-- Шапка с реальными логотипами из репозитория -->
         <header class="header">
             <div class="header-top">
                 <div class="logo-area">
-                    <div class="sub">изготовление с 2015</div>
-                    <h1>3D SIGN <span style="color:var(--red-accent);">•</span> STUDIO</h1>
+                    <!-- Основной логотип -->
+                    <img src="./logo3D_new.png" alt="3D Sign Studio" class="logo-img" style="height: 65px;">
+                    <!-- Можно добавить черную версию как вариант, но основной цветной уже есть -->
+                    <div class="logo-text">
+                        <div class="sub">изготовление с 2015</div>
+                        <h1>3D SIGN STUDIO</h1>
+                    </div>
                 </div>
                 <div class="header-contact">
-                    <i class="fas fa-phone-alt"></i> +7 (800) 555-34-45
+                    <i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +7 (800) 555-34-45
                 </div>
             </div>
             <div class="tagline">
-                <strong>Объёмные вывески</strong> премиум-класса • от дизайна до монтажа
+                <strong>Объёмные вывески</strong> · дизайн, производство, монтаж
             </div>
         </header>
 
-        <!-- Секция "Наши шаблоны и решения" -->
+        <!-- Секция с карточками, где используются изображения из списка -->
         <div class="section-title">
-            <i class="fas fa-cubes"></i> Каталог решений 
-            <span>15+ видов</span>
+            <i class="fas fa-images" style="margin-right: 15px; color: var(--red-accent);"></i> 
+            Наши решения 
+            <span>12 направлений</span>
         </div>
 
-        <!-- Сетка карточек с расшифрованными названиями -->
-        <div class="card-grid" id="catalogGrid">
-            <!-- Карточки будут сгенерированы из JS, но можно и статично, сделаем статично для простоты -->
-        </div>
+        <div class="card-grid" id="catalogGrid"></div>
 
         <!-- CTA блок -->
         <div class="cta-section">
             <div class="cta-text">
-                <h3>Готовы обсудить проект?</h3>
-                <p>Бесплатный дизайн-макет и расчёт за 24 часа</p>
+                <h3>Нужна вывеска под ключ?</h3>
+                <p>Рассчитаем стоимость за 1 час, подготовим макет</p>
             </div>
-            <a href="#" class="btn btn-solid"><i class="fas fa-pen-ruler" style="margin-right: 10px;"></i>Заказать вывеску</a>
+            <a href="#" class="btn btn-solid"><i class="fas fa-pen-ruler" style="margin-right: 12px;"></i>Заказать звонок</a>
         </div>
 
         <footer class="footer">
-            © 2026 3D Sign Studio. Все права защищены. Красный · Белый · Синий.
+            © 2026 3D Sign Studio.
         </footer>
     </div>
 
     <script>
         (function() {
-            // Список шаблонов из названий файлов, расшифровка и описание
-            const templates = [
+            // Массив с данными из списка файлов + описания
+            const services = [
                 {
                     file: "advertising designs.png",
                     title: "Рекламные конструкции",
-                    desc: "Комплексные решения для наружной рекламы: щиты, стелы, пилоны.",
-                    icon: "fa-bullhorn",
-                    category: "Наружная реклама"
+                    desc: "Комплексные решения: стелы, пилоны, щиты.",
+                    category: "Наружная реклама",
+                    iconFallback: "fa-bullhorn"
                 },
                 {
                     file: "banners.png",
                     title: "Баннеры",
-                    desc: "Широкоформатная печать, баннерные сетки, виниловые полотна.",
-                    icon: "fa-flag",
-                    category: "Печать"
+                    desc: "Широкоформатная печать, баннерная сетка.",
+                    category: "Печать",
+                    iconFallback: "fa-flag"
                 },
                 {
                     file: "car branding.png",
                     title: "Брендирование авто",
-                    desc: "Оклейка плёнкой, объёмные логотипы на транспорт.",
-                    icon: "fa-truck",
-                    category: "Транспорт"
+                    desc: "Оклейка, объёмные логотипы на транспорт.",
+                    category: "Транспорт",
+                    iconFallback: "fa-truck"
                 },
                 {
                     file: "console signboard.png",
                     title: "Консольные вывески",
-                    desc: "Вывески перпендикулярно фасаду, привлекают внимание с тротуара.",
-                    icon: "fa-square",
-                    category: "Вывески"
+                    desc: "Перпендикулярные фасаду конструкции.",
+                    category: "Вывески",
+                    iconFallback: "fa-square"
                 },
                 {
                     file: "interior design_navigation.png",
                     title: "Интерьерная навигация",
-                    desc: "Таблички, указатели, навигационные стойки в едином стиле.",
-                    icon: "fa-signs-post",
-                    category: "Интерьер"
+                    desc: "Таблички, указатели, стойки.",
+                    category: "Интерьер",
+                    iconFallback: "fa-signs-post"
                 },
                 {
                     file: "neon signs.png",
                     title: "Неоновые вывески",
-                    desc: "Гибкий неон, классический стеклянный неон, эффектный декор.",
-                    icon: "fa-lightbulb",
-                    category: "Неон"
+                    desc: "Гибкий неон, классический стеклянный.",
+                    category: "Неон",
+                    iconFallback: "fa-lightbulb"
                 },
                 {
                     file: "pseudo volumetric letters.png",
                     title: "Псевдообъёмные буквы",
-                    desc: "Лёгкие и бюджетные объёмные буквы из ПВХ/акрила без подсветки.",
-                    icon: "fa-font",
-                    category: "Объёмные буквы"
+                    desc: "Бюджетный вариант 3D букв.",
+                    category: "Объём",
+                    iconFallback: "fa-font"
                 },
                 {
                     file: "roof installations.png",
                     title: "Крышные установки",
-                    desc: "Крупногабаритные конструкции для размещения на кровле зданий.",
-                    icon: "fa-building",
-                    category: "Крышная реклама"
+                    desc: "Крупные конструкции на кровле.",
+                    category: "Крыша",
+                    iconFallback: "fa-building"
                 },
                 {
                     file: "shop window design.png",
                     title: "Оформление витрин",
-                    desc: "Аппликации, тонировка, объёмные элементы в витринах.",
-                    icon: "fa-store",
-                    category: "Витрины"
+                    desc: "Плёнка, аппликации, объём в витрине.",
+                    category: "Витрины",
+                    iconFallback: "fa-store"
                 },
                 {
                     file: "three-dimensional letters.png",
                     title: "Объёмные буквы",
-                    desc: "Классические 3D буквы с лицевой подсветкой или без.",
-                    icon: "fa-cube",
-                    category: "3D буквы"
+                    desc: "Классика: акрил, металл, ПВХ.",
+                    category: "3D буквы",
+                    iconFallback: "fa-cube"
                 },
                 {
                     file: "volumetric letters with pixel backlighting.png",
-                    title: "Буквы с пиксельной подсветкой",
-                    desc: "Динамическая RGB-подсветка, эффект бегущих огней.",
-                    icon: "fa-gripfire",
-                    category: "LED буквы"
+                    title: "Пиксельная подсветка",
+                    desc: "RGB буквы с эффектами.",
+                    category: "LED",
+                    iconFallback: "fa-gripfire"
                 },
                 {
                     file: "volumetric light boxes.png",
                     title: "Объёмные лайтбоксы",
-                    desc: "Световые короба с лицевой подсветкой и объёмным эффектом.",
-                    icon: "fa-braille",
-                    category: "Лайтбоксы"
+                    desc: "Световые короба с глубиной.",
+                    category: "Лайтбокс",
+                    iconFallback: "fa-braille"
                 }
             ];
 
-            // Ещё можно добавить карточки для "console signboard" уже есть, "car branding" и т.д.
-            // Проверим, что все 12 позиций соответствуют списку (исключая логотипы и фон)
-            
             const grid = document.getElementById('catalogGrid');
             
-            templates.forEach(item => {
+            services.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 
-                // иконка для карточки
-                const iconHtml = `<i class="fas ${item.icon}"></i>`;
-                
+                // Создаём карточку с изображением
                 card.innerHTML = `
                     <div class="card-img">
-                        ${iconHtml}
+                        <img src="./${item.file}" alt="${item.title}" loading="lazy" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas ${item.iconFallback}\' style=\'font-size: 48px; color: white;\'></i>'">
                     </div>
                     <div class="card-content">
                         <div class="card-title">${item.title}</div>
@@ -455,19 +450,19 @@
                 grid.appendChild(card);
             });
 
-            // Добавим пару дополнительных (из списка были logo3D, mobile-logo, фон2 - их не включаем)
-            // Но можно добавить карточку "Индивидуальный дизайн" как отдельную, но не обязательно.
+            // Добавим fallback для случая, если изображение не загрузится (на всякий)
+            // Уже обработано onerror в img, но также можно заменить на иконку FontAwesome.
         })();
     </script>
-    <!-- Небольшой фикс для красоты: если нужно, чтобы все карточки были кликабельны кнопки "Подробнее" -->
+    <!-- Обработчик кнопок -->
     <script>
-        // Просто заглушка для кнопок
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert('📞 Свяжитесь с нами для консультации: ???');
+                alert('📞 Оставьте заявку по телефону: ???\nили напишите нам на почту.');
             });
         });
     </script>
+    <!-- Дополнительно: мобильный логотип можно использовать в адаптиве, но не обязательно -->
 </body>
 </html>
